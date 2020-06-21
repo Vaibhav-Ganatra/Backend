@@ -35,7 +35,6 @@ async function getComments(req,res){
       const comments=await comment.find({postId:req.params.postId}).limit(limit)
          .skip((page-1)*limit)
          .exec();
-         console.log(comments);
       let count;
       await comment.countDocuments({postId:req.params.postId},(err,c)=>{
          count=c;
