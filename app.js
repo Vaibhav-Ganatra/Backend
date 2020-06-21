@@ -10,8 +10,8 @@ const bodyParser= require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
 
-// const multer=require("multer");
-// app.use(multer({dest:"./Uploads"}).any());
+const dotenv= require("dotenv");
+dotenv.config();
 
 //Applying routes
 const addPost = require("./routes/addPost");
@@ -34,7 +34,7 @@ app.use("*", (req,res)=>{
 
 //Connecting to MongoDB
 const mongoose= require("mongoose");
-mongoose.connect("mongodb+srv://Vaibhav_Ganatra:password987@cluster0-ddxhy.mongodb.net/InstagramClone",{
+mongoose.connect(process.env.MONGO_URL,{
    useNewUrlParser:true,
    useUnifiedTopology:true
 },

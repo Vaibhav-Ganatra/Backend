@@ -2,15 +2,16 @@ const express=require("express");
 const router= express.Router();
 const formidable = require("formidable");
 const mongoose=require("mongoose");
+const post= require("../models/posts"); 
+
 
 const cloudinary = require("cloudinary").v2;
 cloudinary.config({
-   cloud_name:"dqkm1ywmb",
-   api_key:"273258214592328",
-   api_secret:"XOOJRIKZvtEThwzbN9MxfHs7aNU"
+   cloud_name:process.env.CLOUD_NAME,
+   api_key:process.env.API_KEY,
+   api_secret:process.env.API_SECRET
 });
 
-const post= require("../models/posts"); 
 router.post("/add",async (req,res) =>{
    let urls=[];
    let caption;
@@ -95,6 +96,7 @@ async function paginatedViews(req,res){
       let count;
       await post.countDocuments({},(err,c)=>{
          count=c;
+         if(count===0) count+=1;
          res.status(200).json({
             success:true,
             posts:posts,
