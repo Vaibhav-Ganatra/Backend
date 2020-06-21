@@ -90,7 +90,7 @@ async function paginatedViews(req,res){
    try{
 
       const {page=1,limit=2}= req.query;
-      const posts= await post.find().select("-__v").limit(limit)
+      const posts= await post.find().select("-__v").limit(limit*1)
          .skip((page-1)*limit)
          .exec();
       let count;
