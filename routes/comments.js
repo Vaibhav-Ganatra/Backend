@@ -10,7 +10,7 @@ async function addComment(req,res){
          _id: new mongoose.Types.ObjectId(),
          postId:req.body.postId,
          comment:req.body.comment,
-         createdAt:currentTime.toLocaleDateString()+" "+currentTime.toTimeString()
+         createdAt:currentTime.toLocaleDateString()+" "+currentTime.toLocaleTimeString()
       });
       await newComment.save();
       res.status(200).json({
