@@ -36,7 +36,6 @@ router.post("/add",async (req,res) =>{
             });
          }
          else{
-            console.log(result);
             urls.push(result.secure_url);
             cloudinary.uploader.upload(files.image2.path,{
                public_id:newMongoId(),
@@ -49,9 +48,7 @@ router.post("/add",async (req,res) =>{
                   });
                }
                else{
-                  console.log(result);
                   urls.push(result.secure_url);
-                  console.log(req.body.caption);
                   try{
                   const doc=new post({
                      _id:new mongoose.Types.ObjectId(),
