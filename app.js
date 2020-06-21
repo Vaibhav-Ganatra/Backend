@@ -48,7 +48,8 @@ mongoose.connect(process.env.MONGO_URL,{
 //Creating Server
 const http= require("http");
 const server= http.createServer(app);
-server.listen(3000,(err) =>{
+const port= process.env.port||3000;
+server.listen(port,(err) =>{
    if(err)
       console.log(err);
    else
