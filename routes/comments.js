@@ -32,12 +32,13 @@ router.post("/add",addComment);
 async function getComments(req,res){
    try{
       const {page=1,limit=2}= req.query;
-      const comments=await comment.find({postId:req.params.postId}).limit(limit)
+      const comments=await comment.find({postId:req.params.postId}).limit(limit*1)
          .skip((page-1)*limit)
          .exec();
       let count;
       await comment.countDocuments({postId:req.params.postId},(err,c)=>{
          count=c;
+         if(count===0) count+=1;
          res.status(200).json({
             success:true,
             comments:comments,
