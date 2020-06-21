@@ -22,7 +22,7 @@ app.use("/api/comment",comment);
 //Configuring default route
 app.get("/",(req,res)=>{
    res.status(200).json({
-      message:"Server running at localhost:3000"
+      message:"Server running"
    });
 });
 
